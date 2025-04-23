@@ -1,7 +1,7 @@
 { "commands": [
 { "hdr": "743", "dbg": true, "cmd": {"22": "0207"}, "freq": 2,
   "signals": [
-    {"id": "RENAULT_ODO", "path": "Trips.Generic", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
+    {"id": "RENAULT_ODO", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
   ]}
 ]
 }
