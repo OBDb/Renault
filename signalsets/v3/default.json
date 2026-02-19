@@ -2,6 +2,452 @@
 { "hdr": "743", "dbg": true, "cmd": {"22": "0207"}, "freq": 2,
   "signals": [
     {"id": "RENAULT_ODO", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3001"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_12V_BAT_V", "path": "Battery", "fmt": { "len": 8, "max": 25.5, "div": 10, "unit": "volts" }, "name": "Battery voltage, 12V", "suggestedMetric": "starterBatteryVoltage"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3005"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_2WD_MODE_SW",  "path": "Drivetrain", "fmt": {           "len": 8, "max": 255, "unit": "scalar" }, "name": "2WD mode switch"},
+    {"id": "RENAULT_AUTO_MODE_SW", "path": "Drivetrain", "fmt": {"bix": 8,  "len": 8, "max": 255, "unit": "scalar" }, "name": "Auto mode switch"},
+    {"id": "RENAULT_4WD_MODE_SW",  "path": "Drivetrain", "fmt": {"bix": 16, "len": 8, "max": 255, "unit": "scalar" }, "name": "4WD mode switch"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3006"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_FR_VSS", "path": "Movement", "fmt": {           "len": 8, "max": 2550, "mul": 10, "unit": "rpm" }, "name": "FR wheel speed"},
+    {"id": "RENAULT_FL_VSS", "path": "Movement", "fmt": {"bix": 8,  "len": 8, "max": 2550, "mul": 10, "unit": "rpm" }, "name": "FL wheel speed"},
+    {"id": "RENAULT_RR_VSS", "path": "Movement", "fmt": {"bix": 16, "len": 8, "max": 2550, "mul": 10, "unit": "rpm" }, "name": "RR wheel speed"},
+    {"id": "RENAULT_RL_VSS", "path": "Movement", "fmt": {"bix": 24, "len": 8, "max": 2550, "mul": 10, "unit": "rpm" }, "name": "RL wheel speed"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3008"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_VSS_TC", "path": "Movement", "fmt": { "len": 8, "max": 127, "min": -128, "sign": true, "unit": "kilometersPerHour" }, "name": "Vehicle speed", "suggestedMetric": "speed"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "300A"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ACCEL_POS_TC", "path": "Movement", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Accelerator pedal position"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "300D"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_MOTOR_STS_TC", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Motor status"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3010"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_TRACTION_CTRL",      "path": "Drivetrain", "fmt": {"bix": 16, "len": 8, "max": 255, "unit": "scalar" }, "name": "Traction control"},
+    {"id": "RENAULT_TRAJECTORY_CTRL",    "path": "Drivetrain", "fmt": {"bix": 24, "len": 8, "max": 255, "unit": "scalar" }, "name": "Trajectory control"},
+    {"id": "RENAULT_ENGINE_TORQUE_CTRL", "path": "Drivetrain", "fmt": {"bix": 32, "len": 8, "max": 255, "unit": "scalar" }, "name": "Engine torque control"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3011"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ENGINE_TORQUE_REF", "path": "Engine", "fmt": {           "len": 16, "max": 15983.5, "min": -16784, "div": 2, "add": -400, "sign": true, "unit": "newtonMeters" }, "name": "Engine torque, reference"},
+    {"id": "RENAULT_TORQUE_SETPT_PROG", "path": "Engine", "fmt": {"bix": 16, "len": 8,  "max": 255,                                                         "unit": "scalar"       }, "name": "Torque setpoint programming"},
+    {"id": "RENAULT_COUPLER",           "path": "Engine", "fmt": {"bix": 24, "len": 8,  "max": 255,                                                         "unit": "scalar"       }, "name": "Coupler"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3020"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CLUTCH_T", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "celsius" }, "name": "Clutch temperature"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3022"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_TRANS_MODE_BTN_POS", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission mode button position"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3023"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_OP_MODE_SEL", "path": "Drivetrain", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Operating mode, selected"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3024"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_4WD_MODE_MON",  "path": "Drivetrain", "fmt": {          "len": 8, "max": 255, "unit": "scalar" }, "name": "4WD mode monitor"},
+    {"id": "RENAULT_WARNING_LIGHT", "path": "Engine",     "fmt": {"bix": 8, "len": 8, "max": 255, "unit": "scalar" }, "name": "Warning light"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3025"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_TORQUE_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "newtonMeters" }, "name": "Torque, requested"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3026"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_OP_MODE", "path": "Drivetrain", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Operating mode"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "302C"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_TORQUE_APPLIED", "path": "Engine", "fmt": { "len": 8, "max": 2550, "mul": 10, "unit": "newtonMeters" }, "name": "Torque, applied"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "302D"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_INT_FAULT_CODE", "path": "Engine", "fmt": { "len": 32, "max": 4294967295, "unit": "scalar" }, "name": "Internal fault code"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3043"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_SPEEDO_INDEX", "path": "Movement", "fmt": {"bix": 32, "len": 8, "max": 255, "unit": "scalar" }, "name": "Speedo index"}
+  ]},
+{ "hdr": "748", "dbg": true, "cmd": {"22": "3050"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_GEARBOX_TYPE", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Gearbox type"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2001"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ECT", "path": "Engine", "fmt": { "len": 16, "max": 6280.5, "min": -273, "div": 10, "add": -273, "unit": "celsius" }, "name": "Coolant temperature", "suggestedMetric": "engineCoolantTemperature"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2003"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_VSS", "path": "Movement", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "kilometersPerHour" }, "name": "Vehicle speed", "suggestedMetric": "speed"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2004"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ENGINE_TORQUE", "path": "Engine", "fmt": { "len": 16, "max": 1647.96875, "min": -400, "div": 32, "add": -400, "unit": "newtonMeters" }, "name": "Engine torque"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2005"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ECU_SUPPLY_V", "path": "Battery", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "volts" }, "name": "Supply voltage, ECU"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2007"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_EST_OIL_T", "path": "Engine", "fmt": { "len": 16, "max": 6280.5, "min": -273, "div": 10, "add": -273, "unit": "celsius" }, "name": "Engine oil temperature, estimated", "suggestedMetric": "engineOilTemperature"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "200B"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ACCEL_POT_V1", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Accelerator pedal potentiometer voltage, track 1"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "200C"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ACCEL_POT_V2", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Accelerator pedal potentiometer voltage, track 2"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "200D"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_REFRIG_P_SNS_V", "path": "Climate", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "volts" }, "name": "Refrigerant pressure sensor voltage"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "200E"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ECU_POST_IGN", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Post-ignition status"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "200F"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_BRAKE_MUX_SIG", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Braking detected multiplex signal"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2010"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_MOTOR_STS", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Motor status"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2014"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CAM_TDC_SYNC", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Camshaft top dead center synchronization"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2016"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CRANK_SYNC", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Crankshaft synchronization"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "201E"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_AC_COMP", "path": "Climate", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "A/C compressor"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2021"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_SNS_FEED_V1", "path": "Electrical", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Sensor feed voltage 1"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2022"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_SNS_FEED_V2", "path": "Electrical", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Sensor feed voltage 2"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2025"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_BRAKE_PEDAL", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Brake pedal"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2026"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_WIRED_BRAKE_CONTACT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Brake contact, wired"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2028"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_OBD_LIGHT_REQ", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Diagnostic light request"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "202E"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ACCEL_POS", "path": "Movement", "fmt": { "len": 16, "max": 81.91875, "div": 800, "unit": "percent" }, "name": "Accelerator pedal position"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2030"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_IN_CAM_DEPHASER_SETPT", "path": "Engine", "fmt": { "len": 16, "max": 1310.7, "div": 50, "unit": "degrees" }, "name": "Inlet camshaft dephaser setpoint"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2031"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_IN_CAM_DEPHASING", "path": "Engine", "fmt": { "len": 16, "max": 1310.7, "div": 50, "unit": "degrees" }, "name": "Inlet camshaft dephasing"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2033"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_IN_CAM_DEPHASER_OCR", "path": "Engine", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "percent" }, "name": "Inlet camshaft dephaser control OCR"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2036"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ACCEL_DETECT_BLOCKED", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Accelerator pedal detection blocked"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2047"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_FIRST_START", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "First start"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "204A"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_FAN_HI_SPD", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Fan high speed request"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2057"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ALT_PWR", "path": "Electrical", "fmt": { "len": 16, "max": 655350, "mul": 10, "unit": "watts" }, "name": "Alternator power"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2059"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CLUTCH_TRAVEL_SW", "path": "Engine", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "Clutch start-of-travel switch"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "206A"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_BRAKE_CONTACT_1_DUR", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "seconds" }, "name": "Brake contact duration 1"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "206B"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_BRAKE_CONTACT_2_DUR", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "seconds" }, "name": "Brake contact duration 2"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "206D"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CLUTCH_CONTACT_WIRE", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Clutch contact wire connection"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2099"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ALT_LOAD", "path": "Electrical", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Alternator load"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "209A"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_IDLE_ADAPT_CORR", "path": "Engine", "fmt": { "len": 16, "max": 1023.96875, "min": -1024, "div": 32, "add": -1024, "sign": true, "unit": "newtonMeters" }, "name": "Idle adaptive correction"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "210E"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_ENGINE_ROT_COUNT", "path": "Engine", "fmt": { "len": 32, "max": 4294.967295, "div": 1000000, "unit": "scalar" }, "name": "Engine rotation count"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2156"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_TORQUEMETER_PROG", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Torquemeter value, programmed"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "215B"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_FLYWHEEL_TGT_PROG", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Flywheel target programming"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "215D"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_TORQUEMETER_ADAPT_CORR", "path": "Engine", "fmt": { "len": 16, "max": 32767, "min": -32768, "add": -32768, "unit": "scalar" }, "name": "Torquemeter correction, adaptive"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2161"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_TDC_SNS_SIG", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Top dead center sensor signal"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2162"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CRANK_SYNC_LOSS_CNT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Crankshaft sync loss counter"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "218D"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_HEAT_RESISTOR_CNT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Heating resistors active count"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "222A"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_REFRIG_P", "path": "Climate", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "bars" }, "name": "Refrigerant pressure"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "222D"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CLUTCH_PEDAL_SW", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Clutch pedal switch"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2241"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_IN_CAM_DEPHASER_SOL_PROG", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Inlet camshaft dephaser solenoid programming"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2246"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_IDLE_REG_INT_CORR", "path": "Engine", "fmt": { "len": 16, "max": 1023.96875, "min": -1024, "div": 32, "add": -1024, "sign": true, "unit": "newtonMeters" }, "name": "Idle regulation integral correction"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2401"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_BOOST_P", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "bars" }, "name": "Boost pressure"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "240B"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_MANIFOLD_P", "path": "Engine", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilopascal" }, "name": "Manifold pressure"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2414"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_THROTTLE_POS_REF", "path": "Engine", "fmt": { "len": 16, "max": 3276.75, "div": 20, "unit": "percent" }, "name": "Throttle position, reference"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2415"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_THROTTLE_POS_1", "path": "Engine", "fmt": { "len": 16, "max": 3276.75, "div": 20, "unit": "percent" }, "name": "Throttle position, track 1"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2416"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_THROTTLE_POS_2", "path": "Engine", "fmt": { "len": 16, "max": 3276.75, "div": 20, "unit": "percent" }, "name": "Throttle position, track 2"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2418"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_THROTTLE_V1", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Throttle voltage, track 1"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2419"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_THROTTLE_V2", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Throttle voltage, track 2"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "242F"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_THROTTLE_POS", "path": "Engine", "fmt": { "len": 16, "max": 3276.75, "div": 20, "unit": "percent" }, "name": "Throttle position, measured"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "243F"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_INLET_AIR_T", "path": "Engine", "fmt": { "len": 16, "max": 6280.5, "min": -273, "div": 10, "add": -273, "unit": "celsius" }, "name": "Inlet air temperature"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2449"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_O2_UP_V", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "millivolts" }, "name": "O2 sensor voltage, upstream"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "244A"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_O2_DN_V", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "millivolts" }, "name": "O2 sensor voltage, downstream"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "244B"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_O2_UP_HEAT_R", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "ohms" }, "name": "O2 sensor heating resistance, upstream"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "244C"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_O2_DN_HEAT_R", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "ohms" }, "name": "O2 sensor heating resistance, downstream"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2457"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_THROTTLE_LOW_STOP_PROG", "path": "Engine", "fmt": { "len": 16, "max": 3276.75, "div": 20, "unit": "percent" }, "name": "Throttle low stop, programmed"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "245D"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_THROTTLE_LIMITS_PROG", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Throttle limits programming"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2493"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_TEST_RESULT_1", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Test result 1"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2494"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_TEST_RESULT_2", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Test result 2"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "24C4"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_O2_UP_HEAT_DELAY", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "O2 sensor heating delay, upstream"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "24C9"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_THROTTLE_SAFE_MODE_PROG", "path": "Engine", "fmt": { "len": 16, "max": 3276.75, "div": 20, "unit": "percent" }, "name": "Throttle safe mode value, programmed"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "24D7"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_MANIFOLD_P_LIN", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "unknown" }, "name": "Manifold pressure, linearised"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2807"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_IGN_TIMING_ADV", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "degrees" }, "name": "Ignition timing advance"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "281B"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_LOW_FUEL", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Fuel level, low"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "281C"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_FUEL_PUMP_CTRL", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Fuel pump control circuit"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2822"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CANISTER_BLEED_SOL_RCO", "path": "Engine", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 65535, "unit": "percent" }, "name": "Canister bleed solenoid valve RCO"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2841"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CYL1_MISFIRE_CNT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 1 misfire counter"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2842"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CYL2_MISFIRE_CNT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 2 misfire counter"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2843"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CYL3_MISFIRE_CNT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 3 misfire counter"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2844"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CYL4_MISFIRE_CNT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 4 misfire counter"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2847"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CYL1_KNOCK", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 1 knock"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2848"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CYL2_KNOCK", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 2 knock"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2849"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CYL3_KNOCK", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 3 knock"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "284A"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_CYL4_KNOCK", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 4 knock"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "284D"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_KNOCK_AVG", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Knock signal, average"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "284E"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_RICHNESS_CORR", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Richness correction"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2850"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_RICHNESS_CORR_OP", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "percent" }, "name": "Richness correction, operating"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2851"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_RICHNESS_REG_GAIN", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Richness regulation gain"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2852"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_RICHNESS_REG_OFFSET", "path": "Engine", "fmt": { "len": 8, "max": 255, "div": 1000, "unit": "milliseconds" }, "name": "Richness regulation offset"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2873"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_RICHNESS_ADAPT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Richness, adaptive operating"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2874"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_MISFIRE_CNT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Misfire counter, total"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2881"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_FLI_EST", "path": "Fuel", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 65535, "unit": "percent" }, "name": "Fuel tank level, estimated", "suggestedMetric": "fuelTankLevel"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "28B1"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_GAS_T", "path": "Fuel", "fmt": { "len": 16, "max": 6280.5, "min": -273, "div": 10, "add": -273, "unit": "celsius" }, "name": "Fuel temperature"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2C03"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_GEARBOX_RATIO_TGT", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Gearbox ratio, target"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "2C04"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_GEARBOX_RATIO", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Gearbox ratio"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "F423"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_LPG_P", "path": "Engine", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "bars" }, "name": "LPG pressure"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "FD81"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_MANIFOLD_P_SNS_V", "path": "Engine", "fmt": { "len": 16, "max": 15.99975, "div": 4096, "unit": "volts" }, "name": "Manifold pressure sensor voltage"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "FD83"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_AIR_INLET_T_SNS_V", "path": "Engine", "fmt": { "len": 16, "max": 15.99975, "div": 4096, "unit": "volts" }, "name": "Air inlet temperature sensor voltage"}
+  ]},
+{ "hdr": "7E0", "dbg": true, "cmd": {"22": "FD8B"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_COOLANT_T_SNS_V", "path": "Engine", "fmt": { "len": 16, "max": 15.99975, "div": 4096, "unit": "volts" }, "name": "Coolant temperature sensor voltage"}
   ]}
 ]
 }
