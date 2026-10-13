@@ -263,11 +263,11 @@
   ]},
 { "hdr": "742", "din": "C0", "dbg": true, "cmd": {"22": "0101"}, "freq": 0.25,
   "signals": [
-    {"id": "RENAULT_STEER_WHL_SPD_CALC", "path": "Tires", "fmt": { "len": 16, "max": 3276, "min": -3276, "div": 10, "add": -3276.7, "unit": "unknown" }, "name": "Steering wheel speed calculated by epas"}
+    {"id": "RENAULT_STEER_WHL_SPD_CALC", "path": "Control", "fmt": { "len": 16, "max": 3276, "min": -3276, "div": 10, "add": -3276.7, "unit": "unknown" }, "name": "Steering wheel speed"}
   ]},
 { "hdr": "742", "din": "C0", "dbg": true, "cmd": {"22": "0104"}, "freq": 0.25,
   "signals": [
-    {"id": "RENAULT_STEER_WHL_ANG_742", "path": "Tires", "fmt": { "len": 16, "max": 3276, "min": -3276, "div": 10, "add": -3276.7, "unit": "degrees" }, "name": "Steering wheel angle"}
+    {"id": "RENAULT_STEER_WHL_ANG_742", "path": "Control", "fmt": { "len": 16, "max": 3276, "min": -3276, "div": 10, "add": -3276.7, "unit": "degrees" }, "name": "Steering wheel angle"}
   ]},
 { "hdr": "742", "rax": "762", "fcm1": true, "din": "C0", "dbg": true, "cmd": {"21": "03"}, "freq": 1,
   "signals": [
@@ -368,6 +368,7 @@
   ]},
 { "hdr": "743", "rax": "763", "din": "C0", "dbg": true, "cmd": {"22": "2006"}, "freq": 5,
   "signals": [
+    {"id": "RENAULT_BAT_V",         "path": "Battery", "fmt": { "len": 16, "max": 6553, "div": 10, "unit": "volts" }, "name": "Battery voltage",      "suggestedMetric": "starterBatteryVoltage"},
     {"id": "RENAULT_BAT_V_12_V_V3", "path": "Battery", "fmt": { "len": 16, "max": 6553, "div": 10, "unit": "volts" }, "name": "BATTERY VOLTAGE 12 v"}
   ]},
 { "hdr": "743", "rax": "763", "dbg": true, "cmd": {"22": "2008"}, "freq": 1,
@@ -453,7 +454,8 @@
   ]},
 { "hdr": "744", "rax": "764", "dbg": true, "cmd": {"22": "43A4"}, "freq": 5,
   "signals": [
-    {"id": "RENAULT_HEAT_T", "path": "Climate", "fmt": { "len": 16, "max": 215.996, "min": -40, "div": 256, "add": -40, "unit": "celsius" }, "name": "Heating temperature"}
+    {"id": "RENAULT_HEAT_T_RAW", "path": "Climate", "fmt": { "len": 8,  "max": 255,                                         "unit": "scalar"  }, "name": "Heating temperature, raw"},
+    {"id": "RENAULT_HEAT_T",     "path": "Climate", "fmt": { "len": 16, "max": 215.996, "min": -40, "div": 256, "add": -40, "unit": "celsius" }, "name": "Heating temperature"}
   ]},
 { "hdr": "744", "rax": "764", "dbg": true, "cmd": {"22": "43A5"}, "freq": 5,
   "signals": [
@@ -545,7 +547,7 @@
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "4109"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TP_FL_ALERT", "path": "Tires", "name": "Front left tire pressure alert", "fmt": {"len": 16, "map": {
+    {"id": "RENAULT_TP_FL_ALERT", "path": "Tires", "name": "Front left tire pressure alert", "fmt": {"len": 8, "map": {
           "0": { "description": "None",    "value": "NONE" },
           "1": { "description": "Alert",   "value": "ALERT" },
           "2": { "description": "Warning", "value": "WARNING" },
@@ -559,7 +561,7 @@
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "410A"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TP_FR_ALERT", "path": "Tires", "name": "Front right tire pressure alert", "fmt": {"len": 16, "map": {
+    {"id": "RENAULT_TP_FR_ALERT", "path": "Tires", "name": "Front right tire pressure alert", "fmt": {"len": 8, "map": {
           "0": { "description": "None",    "value": "NONE" },
           "1": { "description": "Alert",   "value": "ALERT" },
           "2": { "description": "Warning", "value": "WARNING" },
@@ -573,7 +575,7 @@
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "410B"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TP_RL_ALERT", "path": "Tires", "name": "Rear left tire pressure alert", "fmt": {"len": 16, "map": {
+    {"id": "RENAULT_TP_RL_ALERT", "path": "Tires", "name": "Rear left tire pressure alert", "fmt": {"len": 8, "map": {
           "0": { "description": "None",    "value": "NONE" },
           "1": { "description": "Alert",   "value": "ALERT" },
           "2": { "description": "Warning", "value": "WARNING" },
@@ -587,7 +589,7 @@
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "410C"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TP_RR_ALERT", "path": "Tires", "name": "Rear right tire pressure alert", "fmt": {"len": 16, "map": {
+    {"id": "RENAULT_TP_RR_ALERT", "path": "Tires", "name": "Rear right tire pressure alert", "fmt": {"len": 8, "map": {
           "0": { "description": "None",    "value": "NONE" },
           "1": { "description": "Alert",   "value": "ALERT" },
           "2": { "description": "Warning", "value": "WARNING" },
@@ -601,67 +603,76 @@
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "4186"}, "freq": 3,
   "signals": [
-    {"id": "RENAULT_LOW_BEAM", "path": "Lights", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Low beams on"}
+    {"id": "RENAULT_LOW_BEAM", "path": "Lights", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "Low beams on"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "6026"}, "freq": 3,
   "signals": [
-    {"id": "RENAULT_FL_DOOR", "path": "Doors", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Front left door open"}
+    {"id": "RENAULT_FL_DOOR", "path": "Doors", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "Front left door open"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "6027"}, "freq": 3,
   "signals": [
-    {"id": "RENAULT_FR_DOOR", "path": "Doors", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Front right door open"}
+    {"id": "RENAULT_FR_DOOR", "path": "Doors", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "Front right door open"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "609B"}, "freq": 3,
   "signals": [
-    {"id": "RENAULT_TAILGATE", "path": "Doors", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Tailgate open"}
+    {"id": "RENAULT_TAILGATE", "path": "Doors", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "Tailgate open"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "60C6"}, "freq": 3,
   "signals": [
-    {"id": "RENAULT_IGN", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Ignition relay on"}
+    {"id": "RENAULT_IGN", "path": "Engine", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "Ignition relay on"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "61B2"}, "freq": 3,
   "signals": [
-    {"id": "RENAULT_RL_DOOR", "path": "Doors", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Rear left door open"}
+    {"id": "RENAULT_RL_DOOR", "path": "Doors", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "Rear left door open"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "61B3"}, "freq": 3,
   "signals": [
-    {"id": "RENAULT_RR_DOOR_V2", "path": "Doors", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Rear right door open"}
+    {"id": "RENAULT_RR_DOOR_V2", "path": "Doors", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "Rear right door open"}
   ]},
-{ "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "6300"}, "freq": 60,
+{ "hdr": "745", "rax": "765", "fcm1": true, "dbg": true, "cmd": {"22": "6300"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TP_FL", "path": "Tires", "fmt": { "len": 16, "max": 767.25, "mul": 3, "div": 4, "nullmax": 767.25, "unit": "kilopascal" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"}
+    {"id": "RENAULT_TP_FL", "path": "Tires", "fmt": {           "len": 16, "max": 767.25, "mul": 3, "div": 4, "nullmax": 767.25, "unit": "kilopascal" }, "name": "Front left tire pressure",  "suggestedMetric": "frontLeftTirePressure"},
+    {"id": "RENAULT_TP_FR", "path": "Tires", "fmt": {"bix": 16, "len": 16, "max": 767.25, "mul": 3, "div": 4, "nullmax": 767.25, "unit": "kilopascal" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"},
+    {"id": "RENAULT_TP_RL", "path": "Tires", "fmt": {"bix": 32, "len": 16, "max": 767.25, "mul": 3, "div": 4, "nullmax": 767.25, "unit": "kilopascal" }, "name": "Rear left tire pressure",   "suggestedMetric": "rearLeftTirePressure"},
+    {"id": "RENAULT_TP_RR", "path": "Tires", "fmt": {"bix": 48, "len": 16, "max": 767.25, "mul": 3, "div": 4, "nullmax": 767.25, "unit": "kilopascal" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "6301"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TP_FR", "path": "Tires", "fmt": { "len": 16, "max": 767.25, "mul": 3, "div": 4, "nullmax": 767.25, "unit": "kilopascal" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"}
+    {"id": "RENAULT_TP_FR_STATUS", "path": "Tires", "fmt": { "len": 8,  "max": 255,                                           "unit": "scalar"     }, "name": "Front right tire pressure record, raw"},
+    {"id": "RENAULT_TP_FR_V2",     "path": "Tires", "fmt": { "len": 16, "max": 767.25, "mul": 3, "div": 4, "nullmax": 767.25, "unit": "kilopascal" }, "name": "Front right tire pressure",             "suggestedMetric": "frontRightTirePressure"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "6302"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TP_RL", "path": "Tires", "fmt": { "len": 16, "max": 767.25, "mul": 3, "div": 4, "nullmax": 767.25, "unit": "kilopascal" }, "name": "Rear left tire pressure", "suggestedMetric": "rearLeftTirePressure"}
+    {"id": "RENAULT_TP_RL_STATUS", "path": "Tires", "fmt": { "len": 8,  "max": 255,                                           "unit": "scalar"     }, "name": "Rear left tire pressure record, raw"},
+    {"id": "RENAULT_TP_RL_V2",     "path": "Tires", "fmt": { "len": 16, "max": 767.25, "mul": 3, "div": 4, "nullmax": 767.25, "unit": "kilopascal" }, "name": "Rear left tire pressure",             "suggestedMetric": "rearLeftTirePressure"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "6303"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TP_RR", "path": "Tires", "fmt": { "len": 16, "max": 767.25, "mul": 3, "div": 4, "nullmax": 767.25, "unit": "kilopascal" }, "name": "Rear right tire pressure", "suggestedMetric": "rearRightTirePressure"}
+    {"id": "RENAULT_TP_RR_STATUS", "path": "Tires", "fmt": { "len": 8,  "max": 255,                                           "unit": "scalar"     }, "name": "Rear right tire pressure record, raw"},
+    {"id": "RENAULT_TP_RR_V2",     "path": "Tires", "fmt": { "len": 16, "max": 767.25, "mul": 3, "div": 4, "nullmax": 767.25, "unit": "kilopascal" }, "name": "Rear right tire pressure",             "suggestedMetric": "rearRightTirePressure"}
   ]},
-{ "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "6310"}, "freq": 60,
+{ "hdr": "745", "rax": "765", "fcm1": true, "dbg": true, "cmd": {"22": "6310"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TT_FL", "path": "Tires", "fmt": { "len": 8, "max": 97, "min": -30, "add": -30, "nullmax": 97, "unit": "celsius" }, "name": "Front left tire temperature", "suggestedMetric": "frontLeftTireTemperature"}
+    {"id": "RENAULT_TT_FL", "path": "Tires", "fmt": {           "len": 8, "max": 97, "min": -30, "add": -30, "nullmax": 97, "unit": "celsius" }, "name": "Front left tire temperature",  "suggestedMetric": "frontLeftTireTemperature"},
+    {"id": "RENAULT_TT_FR", "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 97, "min": -30, "add": -30, "nullmax": 97, "unit": "celsius" }, "name": "Front right tire temperature", "suggestedMetric": "frontRightTireTemperature"},
+    {"id": "RENAULT_TT_RL", "path": "Tires", "fmt": {"bix": 16, "len": 8, "max": 97, "min": -30, "add": -30, "nullmax": 97, "unit": "celsius" }, "name": "Rear left tire temperature",   "suggestedMetric": "rearLeftTireTemperature"},
+    {"id": "RENAULT_TT_RR", "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 97, "min": -30, "add": -30, "nullmax": 97, "unit": "celsius" }, "name": "Rear right tire temperature",  "suggestedMetric": "rearRightTireTemperature"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "6311"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TT_FR", "path": "Tires", "fmt": { "len": 8, "max": 97, "min": -30, "add": -30, "nullmax": 97, "unit": "celsius" }, "name": "Front right tire temperature", "suggestedMetric": "frontRightTireTemperature"}
+    {"id": "RENAULT_TT_FR_V2", "path": "Tires", "fmt": { "len": 8, "max": 97, "min": -30, "add": -30, "nullmax": 97, "unit": "celsius" }, "name": "Front right tire temperature", "suggestedMetric": "frontRightTireTemperature"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "6312"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TT_RL", "path": "Tires", "fmt": { "len": 8, "max": 97, "min": -30, "add": -30, "nullmax": 97, "unit": "celsius" }, "name": "Rear left tire temperature", "suggestedMetric": "rearLeftTireTemperature"}
+    {"id": "RENAULT_TT_RL_V2", "path": "Tires", "fmt": { "len": 8, "max": 97, "min": -30, "add": -30, "nullmax": 97, "unit": "celsius" }, "name": "Rear left tire temperature", "suggestedMetric": "rearLeftTireTemperature"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "6313"}, "freq": 60,
   "signals": [
-    {"id": "RENAULT_TT_RR", "path": "Tires", "fmt": { "len": 8, "max": 97, "min": -30, "add": -30, "nullmax": 97, "unit": "celsius" }, "name": "Rear right tire temperature", "suggestedMetric": "rearRightTireTemperature"}
+    {"id": "RENAULT_TT_RR_V2", "path": "Tires", "fmt": { "len": 8, "max": 97, "min": -30, "add": -30, "nullmax": 97, "unit": "celsius" }, "name": "Rear right tire temperature", "suggestedMetric": "rearRightTireTemperature"}
   ]},
 { "hdr": "745", "rax": "765", "dbg": true, "cmd": {"22": "8004"}, "freq": 3,
   "signals": [
-    {"id": "RENAULT_LOCKED", "path": "Doors", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Vehicle locked"}
+    {"id": "RENAULT_LOCKED", "path": "Doors", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "Vehicle locked"}
   ]},
 { "hdr": "748", "dbg": true, "cmd": {"22": "3001"}, "freq": 1,
   "signals": [
@@ -1723,6 +1734,10 @@
   "signals": [
     {"id": "RENAULT_RICHNESS_REGULATION_V2", "path": "Engine", "fmt": { "len": 16, "max": 0.0999, "min": -0.1, "mul": 0.0000030518, "add": -0.1, "unit": "milliseconds" }, "name": "Richness regulation programming offset"}
   ]},
+{ "hdr": "7E0", "rax": "7E8", "din": "C0", "dbg": true, "cmd": {"22": "20DC"}, "freq": 1,
+  "signals": [
+    {"id": "RENAULT_SWIRL_FLAP_V2", "path": "Engine", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "With swirl flap"}
+  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "20DD"}, "freq": 1,
   "signals": [
     {"id": "RENAULT_OIL_VAPOUR_HEATER", "path": "Engine", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "scalar" }, "name": "Oil vapor heater"}
@@ -2004,7 +2019,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "2404"}, "freq": 1,
   "signals": [
-    {"id": "RENAULT_AIR_INLET_FLAP_REL", "path": "Engine", "fmt": { "len": 16, "max": 3198, "mul": 61, "div": 1250, "unit": "percent" }, "name": "Air inlet flap relative position"}
+    {"id": "RENAULT_AIR_INLET_FLAP_REL", "path": "Engine", "fmt": { "len": 16, "max": 3198, "mul": 61, "div": 1250, "unit": "percent" }, "name": "Air inlet flap relative position"},
+    {"id": "RENAULT_THROTTLE_BODY",      "path": "Engine", "fmt": { "len": 16, "max": 3276,            "div": 20,   "unit": "percent" }, "name": "Throttle body opening"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "2405"}, "freq": 1,
   "signals": [
@@ -2144,6 +2160,10 @@
 { "hdr": "7E0", "rax": "7E8", "din": "C0", "dbg": true, "cmd": {"22": "243A"}, "freq": 1,
   "signals": [
     {"id": "RENAULT_TURBINE_UP_T_SENS_V_V2", "path": "Battery", "fmt": { "len": 16, "max": 10, "mul": 0.0001526, "unit": "volts" }, "name": "TURBINE UPSTREAM temperature. SENSOR VOLTAGE"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "din": "C0", "dbg": true, "cmd": {"22": "243B"}, "freq": 5,
+  "signals": [
+    {"id": "RENAULT_EXH_GAS_T", "path": "Engine", "fmt": { "len": 16, "max": 6280, "min": -273, "div": 10, "add": -273, "unit": "celsius" }, "name": "Exhaust gas temperature"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "243F"}, "freq": 1,
   "signals": [
@@ -2543,7 +2563,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "2801"}, "freq": 1,
   "signals": [
-    {"id": "RENAULT_RAIL_P", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "bars" }, "name": "Rail pressure"}
+    {"id": "RENAULT_RAIL_P",      "path": "Engine", "fmt": { "len": 16, "max": 65535,                       "unit": "bars"       }, "name": "Rail pressure"},
+    {"id": "RENAULT_FUEL_RAIL_P", "path": "Fuel",   "fmt": { "len": 16, "max": 451847, "mul": 6.8947572932, "unit": "kilopascal" }, "name": "Fuel rail pressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "2802"}, "freq": 1,
   "signals": [
@@ -4973,7 +4994,8 @@
   ]},
 { "hdr": "DADA", "rax": "DA", "dbg": true, "cmd": {"22": "3042"}, "freq": 5,
   "signals": [
-    {"id": "RENAULT_HV_A_3042", "path": "Battery", "fmt": { "len": 16, "max": 16383.75, "min": -16383.75, "div": 2, "add": -16383.75, "unit": "amps" }, "name": "High voltage battery current"}
+    {"id": "RENAULT_HV_A_3042",     "path": "Battery", "fmt": { "len": 16, "max": 16383.75, "min": -16383.75, "div": 2, "add": -16383.75, "unit": "amps"   }, "name": "High voltage battery current"},
+    {"id": "RENAULT_HV_A_3042_RAW", "path": "Battery", "fmt": { "len": 16, "max": 65535,                                                  "unit": "scalar" }, "name": "High voltage battery current, raw"}
   ]},
 { "hdr": "DADA", "rax": "DA", "dbg": true, "cmd": {"22": "3045"}, "freq": 5,
   "signals": [
@@ -6058,7 +6080,8 @@
   ]},
 { "hdr": "DADB", "rax": "DAF1DB", "fcm1": true, "dbg": true, "cmd": {"22": "9284"}, "freq": 1,
   "signals": [
-    {"id": "RENAULT_TRACTION_BAT_CURRENT_DADB", "path": "Battery", "fmt": { "len": 32, "max": 2147483, "min": -2147483, "div": 1000, "sign": true, "unit": "amps" }, "name": "Traction battery, current"}
+    {"id": "RENAULT_TRACTION_BAT_CURRENT_DADB", "path": "Battery", "fmt": { "len": 32, "max": 2147483, "min": -2147483,            "div": 1000, "sign": true, "unit": "amps" }, "name": "Traction battery, current"},
+    {"id": "RENAULT_TRACTION_BAT_CURRENT_V2",   "path": "Battery", "fmt": { "len": 32, "max": 2147483, "min": -2147483, "mul": -1, "div": 1000, "sign": true, "unit": "amps" }, "name": "Traction battery, current"}
   ]},
 { "hdr": "DADB", "rax": "DAF1DB", "fcm1": true, "dbg": true, "cmd": {"22": "F1A0"}, "freq": 1,
   "signals": [
@@ -6098,23 +6121,28 @@
   ]},
 { "hdr": "DADF", "rax": "DF", "dbg": true, "cmd": {"22": "7007"}, "freq": 5,
   "signals": [
-    {"id": "RENAULT_STATOR_A_U", "path": "Drivetrain", "fmt": { "len": 16, "max": 1547.9687, "min": -500, "div": 32, "add": -500, "unit": "amps" }, "name": "Stator current, phase u"}
+    {"id": "RENAULT_STATOR_A_U",     "path": "Drivetrain", "fmt": { "len": 16, "max": 1547.9687,  "min": -500,        "div": 32, "add": -500,               "unit": "amps"   }, "name": "Stator current, phase u"},
+    {"id": "RENAULT_STATOR_A_U_RAW", "path": "Drivetrain", "fmt": { "len": 32, "max": 2147483647, "min": -2147483648,                         "sign": true, "unit": "scalar" }, "name": "Stator current, phase U, raw"}
   ]},
 { "hdr": "DADF", "rax": "DF", "dbg": true, "cmd": {"22": "7008"}, "freq": 5,
   "signals": [
-    {"id": "RENAULT_STATOR_A_V", "path": "Drivetrain", "fmt": { "len": 16, "max": 1547.9687, "min": -500, "div": 32, "add": -500, "unit": "amps" }, "name": "Stator current, phase v"}
+    {"id": "RENAULT_STATOR_A_V",     "path": "Drivetrain", "fmt": { "len": 16, "max": 1547.9687,  "min": -500,        "div": 32, "add": -500,               "unit": "amps"   }, "name": "Stator current, phase v"},
+    {"id": "RENAULT_STATOR_A_V_RAW", "path": "Drivetrain", "fmt": { "len": 32, "max": 2147483647, "min": -2147483648,                         "sign": true, "unit": "scalar" }, "name": "Stator current, phase V, raw"}
   ]},
 { "hdr": "DADF", "rax": "DF", "dbg": true, "cmd": {"22": "7009"}, "freq": 5,
   "signals": [
-    {"id": "RENAULT_STATOR_A_W", "path": "Drivetrain", "fmt": { "len": 16, "max": 1547.9687, "min": -500, "div": 32, "add": -500, "unit": "amps" }, "name": "Stator current, phase w"}
+    {"id": "RENAULT_STATOR_A_W",     "path": "Drivetrain", "fmt": { "len": 16, "max": 1547.9687,  "min": -500,        "div": 32, "add": -500,               "unit": "amps"   }, "name": "Stator current, phase w"},
+    {"id": "RENAULT_STATOR_A_W_RAW", "path": "Drivetrain", "fmt": { "len": 32, "max": 2147483647, "min": -2147483648,                         "sign": true, "unit": "scalar" }, "name": "Stator current, phase W, raw"}
   ]},
 { "hdr": "DADF", "rax": "DF", "dbg": true, "cmd": {"22": "700C"}, "freq": 10,
   "signals": [
-    {"id": "RENAULT_INV_T", "path": "Drivetrain", "fmt": { "len": 24, "max": 32727.998, "min": -40, "div": 512, "add": -40, "unit": "celsius" }, "name": "Inverter temperature"}
+    {"id": "RENAULT_INV_T",     "path": "Drivetrain", "fmt": { "len": 24, "max": 32727.998,  "min": -40,         "div": 512, "add": -40,               "unit": "celsius" }, "name": "Inverter temperature"},
+    {"id": "RENAULT_INV_T_RAW", "path": "Drivetrain", "fmt": { "len": 32, "max": 2147483647, "min": -2147483648,                         "sign": true, "unit": "scalar"  }, "name": "Inverter temperature, raw"}
   ]},
 { "hdr": "DADF", "rax": "DF", "dbg": true, "cmd": {"22": "700F"}, "freq": 10,
   "signals": [
-    {"id": "RENAULT_STATOR_T1", "path": "Drivetrain", "fmt": { "len": 24, "max": 32727.998, "min": -40, "div": 512, "add": -40, "unit": "celsius" }, "name": "Stator temperature 1"}
+    {"id": "RENAULT_STATOR_T1",     "path": "Drivetrain", "fmt": { "len": 24, "max": 32727.998,  "min": -40,         "div": 512, "add": -40,               "unit": "celsius" }, "name": "Stator temperature 1"},
+    {"id": "RENAULT_STATOR_T1_RAW", "path": "Drivetrain", "fmt": { "len": 32, "max": 2147483647, "min": -2147483648,                         "sign": true, "unit": "scalar"  }, "name": "Stator temperature 1, raw"}
   ]},
 { "hdr": "DADF", "rax": "DF", "dbg": true, "cmd": {"22": "7010"}, "freq": 10,
   "signals": [
@@ -6126,7 +6154,8 @@
   ]},
 { "hdr": "DADF", "rax": "DF", "dbg": true, "cmd": {"22": "7049"}, "freq": 5,
   "signals": [
-    {"id": "RENAULT_INV_HV_A", "path": "Drivetrain", "fmt": { "len": 16, "max": 1547.9687, "min": -500, "div": 32, "add": -500, "unit": "amps" }, "name": "Inverter high voltage current"}
+    {"id": "RENAULT_INV_HV_A",     "path": "Drivetrain", "fmt": { "len": 16, "max": 1547.9687,  "min": -500,        "div": 32, "add": -500,               "unit": "amps"   }, "name": "Inverter high voltage current"},
+    {"id": "RENAULT_INV_HV_A_RAW", "path": "Drivetrain", "fmt": { "len": 32, "max": 2147483647, "min": -2147483648,                         "sign": true, "unit": "scalar" }, "name": "Inverter high voltage current, raw"}
   ]},
 { "hdr": "DADF", "rax": "DF", "dbg": true, "cmd": {"22": "7050"}, "freq": 60,
   "signals": [
