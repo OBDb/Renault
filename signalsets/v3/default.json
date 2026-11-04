@@ -1,5 +1,6 @@
 { "ecu": [
-    { "hdr": "7E0", "type": "engine" }
+    { "hdr": "7E0",  "type": "engine" },
+    { "hdr": "DA15", "type": "engine" }
   ],
   "commands": [
 { "hdr": "740", "rax": "760", "fcm1": true, "din": "C0", "dbg": true, "cmd": {"21": "06"}, "freq": 5,
