@@ -1136,7 +1136,7 @@
   "signals": [
     {"id": "RENAULT_BAT_V_12_V",             "path": "Battery",  "fmt": {            "len": 8,  "max": 16.16,                "mul": 4,   "div": 125,    "add": 8,                     "unit": "volts"             }, "name": "Battery voltage, 12 V"},
     {"id": "RENAULT_AIR_T",                  "path": "Engine",   "fmt": {"bix": 16,  "len": 8,  "max": 119,   "min": -40,    "mul": 5,   "div": 8,      "add": -40,                   "unit": "celsius"           }, "name": "Air temperature"},
-    {"id": "RENAULT_MANIFOLD_P_7E0",         "path": "Engine",   "fmt": {"bix": 24,  "len": 16, "max": 389,                  "mul": 37,  "div": 6400,   "add": 10.3,                  "unit": "kilopascal"        }, "name": "Manifold pressure"},
+    {"id": "RENAULT_MANIFOLD_P_7E0",         "path": "Engine",   "fmt": {"bix": 24,  "len": 16, "max": 389,                  "mul": 37,  "div": 6400,   "add": 10.3,                  "unit": "kilopascal"        }, "name": "Manifold pressure",                               "suggestedMetric": "absoluteBoostPressure"},
     {"id": "RENAULT_ATMOSPHERIC_P",          "path": "Engine",   "fmt": {"bix": 40,  "len": 8,  "max": 1047,                 "mul": -37, "div": 10,     "add": 1047,                  "unit": "unknown"           }, "name": "Atmospheric pressure"},
     {"id": "RENAULT_RPM",                    "path": "Movement", "fmt": {"bix": 48,  "len": 16, "max": 65535,                                                                         "unit": "rpm"               }, "name": "Engine speed"},
     {"id": "RENAULT_IDLE_REGULATION_VLV",    "path": "Engine",   "fmt": {"bix": 64,  "len": 16, "max": 65535,                                                                         "unit": "rpm"               }, "name": "Idle regulation valve reference value"},
@@ -1308,7 +1308,7 @@
     {"id": "RENAULT_BRAKE_SWITCH_NUMBER_2",   "path": "Control",  "fmt": {"bix": 71,  "len": 1, "max": 1,   "unit": "offon"             }, "name": "Brake switch, number 2"},
     {"id": "RENAULT_CRUISE_CTRL",             "path": "Engine",   "fmt": {"bix": 107, "len": 1, "max": 1,   "unit": "offon"             }, "name": "Cruise control"},
     {"id": "RENAULT_SPD_LIMITER",             "path": "Movement", "fmt": {"bix": 108, "len": 1, "max": 1,   "unit": "scalar"            }, "name": "Speed limiter"},
-    {"id": "RENAULT_CRUISE_CTRL_SETTING_7E0", "path": "Engine",   "fmt": {"bix": 136, "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise control setting"}
+    {"id": "RENAULT_CRUISE_CTRL_SETTING_7E0", "path": "Engine",   "fmt": {"bix": 136, "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise control setting", "suggestedMetric": "cruiseSetSpeed"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "2001"}, "freq": 1,
   "signals": [
@@ -1469,7 +1469,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "din": "C0", "dbg": true, "cmd": {"22": "2035"}, "freq": 1,
   "signals": [
-    {"id": "RENAULT_CRUISE_CTRL_TGT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise control, target"}
+    {"id": "RENAULT_CRUISE_CTRL_TGT",     "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise control, target"},
+    {"id": "RENAULT_CRUISE_CTRL_SETTING", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise control setting", "suggestedMetric": "cruiseSetSpeed"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "2036"}, "freq": 1,
   "signals": [
@@ -2008,7 +2009,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "2401"}, "freq": 1,
   "signals": [
-    {"id": "RENAULT_BOOST_P", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "bars" }, "name": "Boost pressure"}
+    {"id": "RENAULT_BOOST_P", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "bars" }, "name": "Boost pressure", "suggestedMetric": "absoluteBoostPressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "2402"}, "freq": 1,
   "signals": [
@@ -2045,7 +2046,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "240B"}, "freq": 1,
   "signals": [
-    {"id": "RENAULT_MANIFOLD_P", "path": "Engine", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilopascal" }, "name": "Manifold pressure"}
+    {"id": "RENAULT_MANIFOLD_P", "path": "Engine", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilopascal" }, "name": "Manifold pressure", "suggestedMetric": "absoluteBoostPressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "240D"}, "freq": 5,
   "signals": [
@@ -4181,7 +4182,7 @@
   ]},
 { "hdr": "7E4", "rax": "7EC", "din": "C0", "dbg": true, "cmd": {"22": "2035"}, "freq": 1,
   "signals": [
-    {"id": "RENAULT_CRUISE_CTRL_SETTING_V2", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise control setting"}
+    {"id": "RENAULT_CRUISE_CTRL_SETTING_V3", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise control setting", "suggestedMetric": "cruiseSetSpeed"}
   ]},
 { "hdr": "7E4", "rax": "7EC", "din": "C0", "dbg": true, "cmd": {"22": "2039"}, "freq": 1,
   "signals": [
@@ -4564,7 +4565,7 @@
   ]},
 { "hdr": "DADA", "rax": "DA", "dbg": true, "cmd": {"22": "2035"}, "freq": 1,
   "signals": [
-    {"id": "RENAULT_CRUISE_CTRL_SETTING", "path": "Engine", "fmt": { "len": 32, "max": 4294967295, "unit": "kilometersPerHour" }, "name": "Cruise control setting"}
+    {"id": "RENAULT_CRUISE_CTRL_SETTING_V2", "path": "Engine", "fmt": { "len": 32, "max": 4294967295, "unit": "kilometersPerHour" }, "name": "Cruise control setting", "suggestedMetric": "cruiseSetSpeed"}
   ]},
 { "hdr": "DADA", "rax": "DA", "dbg": true, "cmd": {"22": "2039"}, "freq": 1,
   "signals": [
